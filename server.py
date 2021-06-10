@@ -7,18 +7,17 @@ import struct ## new
 import zlib
 
 def connect():
-    HOST='localhost'
+    HOST=''
     PORT=8485
 
     s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-    print('Socket created')
-
     s.bind((HOST,PORT))
     print('Socket bind complete')
     s.listen(10)
-    print('Socket now listening')
+    print(f'LISTENING AT {PORT}')
 
     conn,addr=s.accept()
+    print(f'Connection Accepted from {addr[0]}')
 
     data = b""
     payload_size = struct.calcsize(">L")
@@ -35,7 +34,7 @@ def connect():
         data = data[msg_size:]
 
         frame=pickle.loads(frame_data, fix_imports=True, encoding="bytes")
-        frame = cv2.imdecode(frame, cv2.IMREAD_COLOR)
+        # frame = cv2.imdecode(frame, cv2.IMREAD_COLOR)
         cv2.imshow('Server Side',frame)
         if cv2.waitKey(1) == ord('q'):
             break
