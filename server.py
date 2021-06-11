@@ -31,7 +31,6 @@ def connect():
         data = data[msg_size:]
 
         frame=pickle.loads(frame_data, fix_imports=True, encoding="bytes")
-        # frame = cv2.imdecode(frame, cv2.IMREAD_COLOR)
         cv2.imshow('Server Side',frame)
         if cv2.waitKey(1) == ord('q'):
             break
