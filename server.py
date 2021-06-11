@@ -1,10 +1,7 @@
 import socket
-import sys
 import cv2
 import pickle
-import numpy as np
-import struct ## new
-import zlib
+import struct
 
 def connect():
     HOST='localhost'
